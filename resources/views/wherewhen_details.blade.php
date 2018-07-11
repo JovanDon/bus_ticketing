@@ -17,14 +17,14 @@
                     <form method="POST" action="{{ url('addaccount_action') }}" aria-label="{{ __('where') }}">
                         @csrf
                                                
-                       @include('whenwhere.selectto')
+                       @include('whenwhere.select2')
                        @include('whenwhere.capturedate')
                        
-                       <div class="row" style="margin-top:270px;" >
+                       <div class="row" >
                        <div class='col-md-6'></div>
                         <div class="form-group col-md-6" >
                                 
-                                <div class="col-md-5 offset-md-6">
+                                <div class="col-md-5 offset-md-7">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('submit') }}
                                     </button>
