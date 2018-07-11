@@ -21,6 +21,10 @@
      <!-- Zebra Date picker CSS -->
     <link rel="stylesheet"  href="{{ asset('Zebra_Datepicker/dist/css/default/zebra_datepicker.min.css') }}" rel="stylesheet">
 
+  <!-- Select2 CSS -->
+  <link rel="stylesheet"  href="{{ asset('select2-4.0.6/dist/css/select2.css') }}" rel="stylesheet">
+
+<
 </head>
 <body>
     <div id="app">
@@ -113,5 +117,42 @@ $(document).ready(function () {
 <script type="text/javascript" src="{{ asset('Zebra_Datepicker/dist/zebra_datepicker.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('Zebra_Datepicker/custom.js') }}"></script>
 
+ <!-- select2 JavaScript -->
+<script type="text/javascript" src="{{ asset('select2-4.0.6/dist/js/select2.min.js') }}"></script>
+
+
+<script>
+function matchCustom(params, data) {
+    // If there are no search terms, return all of the data
+    if ($.trim(params.term) === '') {
+      return data;
+    }
+
+    // Do not display the item if there is no 'text' property
+    if (typeof data.text === 'undefined') {
+      return null;
+    }
+
+    // `params.term` should be the term that is used for searching
+    // `data.text` is the text that is displayed for the data object
+    if (data.text.indexOf(params.term) > -1) {
+      var modifiedData = $.extend({}, data, true);
+      modifiedData.text += ' (matched)';
+
+      // You can return modified objects from here
+      // This includes matching the `children` how you want in nested data sets
+      return modifiedData;
+    }
+
+    // Return `null` if the term should not be displayed
+    return null;
+}
+
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+
+});
+</script>
 </body>
 </html>

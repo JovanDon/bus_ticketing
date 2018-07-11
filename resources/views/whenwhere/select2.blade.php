@@ -13,9 +13,19 @@
 
     <div class="form-group col-md-5 offset-md-1 col-xs-12">        
         <div class="col-md-9 col-xs-12">
-                <select class="form-control" id="origin" class="form-control{{ $errors->has('origin') ? ' is-invalid' : '' }}" name="origin" value="{{ old('origin') }}" >
+                <select class="form-control js-example-basic-single" id="origin" class="form-control{{ $errors->has('origin') ? ' is-invalid' : '' }}" name="origin"  >
                 <!--@//foreach($contactinfo as $contact)-->
-                <option value="" ></option>
+                <option value="" >kampala</option>
+                <option value="" >lwengo</option>
+                <option value="" >masaka</option>
+                <option value="" >seeeta</option>
+                <option value="" >mukono</option>
+                <option value="" >iganga</option>
+                <option value="" >kamuli</option>
+                <option value="" >jinja</option>
+                <option value="" >gulu</option>
+                <option value="" >arua</option>
+                <option value="" >massindi</option>
                 <!--@//endforeach-->
                 </select>
             </div>
@@ -25,8 +35,19 @@
 
     <div class="form-group col-md-5 offset-md-1 col-xs-12">        
         <div class="col-md-9 col-xs-12 ">
-            <input  value="" id="destination" type="text"  class="form-control" name="destination" >
-
+        <select id="destination"  class="form-control js-example-basic-single"  class="form-control{{ $errors->has('destination') ? ' is-invalid' : '' }}" name="destination"  >
+        <option value="" >kampala</option>
+        <option value="" >lwengo</option>
+        <option value="" >masaka</option>
+        <option value="" >seeeta</option>
+        <option value="" >mukono</option>
+        <option value="" >iganga</option>
+        <option value="" >kamuli</option>
+        <option value="" >jinja</option>
+        <option value="" >gulu</option>
+        <option value="" >arua</option>
+        <option value="" >massindi</option>
+        </select>
         </div>
     </div>
 
