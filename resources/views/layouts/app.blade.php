@@ -10,22 +10,24 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- bootswatch template css -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <!-- DataTables CSS -->
+    <link href="{{ asset('css/dataTables.bootstrap4.css') }}" rel="stylesheet">
+     <!-- Zebra Date picker CSS -->
+    <link rel="stylesheet"  href="{{ asset('Zebra_Datepicker/dist/css/default/zebra_datepicker.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-laravel"  >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ __('Jovy Coaches') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,5 +77,41 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('vendorbootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- DataTables JavaScript -->
+<script>
+$(document).ready(function () {
+    $('#dataTables-example').DataTable({
+        responsive: true,
+        drawCallback: function () {
+            $('#dataTables-example_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+        }
+    });
+
+     $('#dataTables-ex1').DataTable({
+        responsive: true,
+        drawCallback: function () {
+            $('#dataTables-ex1_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+        }
+    });
+
+     $('#dataTables-ex2').DataTable({
+        responsive: true,
+        drawCallback: function () {
+            $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+        }
+    });
+});
+</script>
+<script type="text/javascript"src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/responsive.bootstrap4.js') }}"></script>
+ <!-- Zebra Datepicker JavaScript -->
+<script type="text/javascript" src="{{ asset('Zebra_Datepicker/dist/zebra_datepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('Zebra_Datepicker/custom.js') }}"></script>
+
 </body>
 </html>

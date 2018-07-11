@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'PageController@index');
+Route::get('/client_schedules', 'PageController@viewSchedules');
+Route::get('/wherewhen_details', 'PageController@view_wherewhen_page');
+
