@@ -49,7 +49,18 @@
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addlistform') }}">add trip</a>
+                        <a class="nav-link" href="{{ URL::to('addtripform') }}">add trip</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedule list</a>
+                        </li>
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('addtripscheduleform') }}">schedule trip </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('bookings') }}">Bookings </a>
                         </li>
                     </ul>
 

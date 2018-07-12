@@ -12,5 +12,18 @@ class ScheduleController extends Controller
         return view('client_schedules');
     }
 
+    public function addform()
+    {
+        $app = app();
+        $tripschedule = $app->make('stdClass');
+        $tripschedule->id=null;
+
+        return view('scheduletrip_form',compact("tripschedule",$tripschedule));
+    }
+    public function view_allschedules()
+    {
+        //call to is_admin
+        return view('schedule_list');
+    }
     
 }

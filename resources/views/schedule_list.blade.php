@@ -22,6 +22,7 @@
                                     <th> Number</th>
                                     <th>Origin</th>
                                     <th>Destination</th>
+                                    <th>Departure time</th>
                                     <th>Min time to travel</th>
                                     <th>Max time to travel</th>
                                     <th>Cost (shs)</th>
@@ -35,14 +36,15 @@
                                         <td>1</td>
                                         <td>Kampala</td>
                                         <td>Mbarara</td>
+                                        <td>6:00am</td>
                                         <td>6 hours</td>
                                         <td>8 hours</td>
                                         <td>30,000</td>
                                         <td> <!-- not visible to admin-->
-                                            <form action="{{url('addtripscheduleform')}}"  method="post">
+                                            <form action="{{url('booktrip')}}"  method="post">
                                             @csrf
                                                 <input name="trip_id" type="hidden" value="">
-                                                <button class="btn btn-primary" type="submit">Schedule trip</button>
+                                                <button class="btn btn-primary" type="submit">Book now</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -20,31 +20,26 @@
                                 <thead>
                                 <tr>
                                     <th> Number</th>
-                                    <th>Origin</th>
-                                    <th>Destination</th>
-                                    <th>Min time to travel</th>
-                                    <th>Max time to travel</th>
-                                    <th>Cost (shs)</th>
-
-                                    <th>Action</th><!-- not visible to admin-->
+                                    <th> client info</th>
+                                    <th>trip</th>
+                                    <th>trip date</th>
+                                    <th>ticket number</th>
+                                    <th>Paid</th>
+                                    <th>favourite seat</th>
+                                    <th>booked at</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                <!-- @//foreach ($contacts as $contact) -->
                                     <tr >
                                         <td>1</td>
-                                        <td>Kampala</td>
-                                        <td>Mbarara</td>
-                                        <td>6 hours</td>
-                                        <td>8 hours</td>
+                                        <td>Joshua kk</td>
+                                        <td>Kampala-Mbarara</td>
+                                        <td>12-12-2018</td>
+                                        <td>MK12000</td>                                        
                                         <td>30,000</td>
-                                        <td> <!-- not visible to admin-->
-                                            <form action="{{url('addtripscheduleform')}}"  method="post">
-                                            @csrf
-                                                <input name="trip_id" type="hidden" value="">
-                                                <button class="btn btn-primary" type="submit">Schedule trip</button>
-                                            </form>
-                                        </td>
+                                        <td>window</td>
+                                        <td>12-07-2018</td>
                                     </tr>
                                <!--@//endforeach-->
                                 </tbody>

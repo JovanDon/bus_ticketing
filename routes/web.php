@@ -19,10 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/triplist', 'TripsController@index');
-Route::get('/addlistform', 'TripsController@addform');
+Route::get('/addtripform', 'TripsController@addform'); 
+Route::get('/addtripscheduleform', 'ScheduleController@addform');
+Route::get('/bookings', 'BookingsController@index');
+Route::post('/addtripscheduleform', 'ScheduleController@addform');
 
 Route::get('/client_schedules', 'ScheduleController@searched_schedules');
-
+Route::get('/schedulelist', 'ScheduleController@view_allschedules');
 Route::post('/booktrip', 'BookingsController@booktrip');
+
+
 
 
