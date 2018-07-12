@@ -12,12 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'PageController@index');
-Route::get('/client_schedules', 'PageController@viewSchedules');
-Route::get('/wherewhen_details', 'PageController@view_wherewhen_page');
+Route::get('/home', 'HomeController@index');
+Route::get('/triplist', 'TripsController@index');
+Route::get('/addlistform', 'TripsController@addform');
+
+Route::get('/client_schedules', 'ScheduleController@searched_schedules');
+
+Route::post('/booktrip', 'BookingsController@booktrip');
+
 

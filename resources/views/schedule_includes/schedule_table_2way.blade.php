@@ -2,7 +2,6 @@
 <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-ex1">
             <thead>
             <tr>
-                <th>Bus info</th>
                 <th>Departure time</th>
                 <th>Cost(shs)</th>
                 <th>Action</th>
@@ -11,7 +10,6 @@
             <tbody>
             <!--@//foreach ($contacts as $contact) -->
                 <tr >
-                    <td>UAC 233 F</td>
                     <td>7:00am</td>
                     <td> 
                         50000
@@ -25,7 +23,6 @@
                 </tr>
 
                 <tr >
-                    <td>UAB 233 F</td>
                     <td>9:00am</td>
                     <td> 
                         50000
@@ -47,7 +44,6 @@
 <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-ex2">
             <thead>
             <tr>
-                <th>Bus info</th>
                 <th>Departure time</th>
                 <th>Cost(shs)</th>
                 <th>Action</th>
@@ -56,7 +52,6 @@
             <tbody>
             <!--@//foreach ($contacts as $contact) -->
                 <tr >
-                    <td>UAC 233 F</td>
                     <td>7:00am</td>
                     <td> 
                         50000
@@ -70,7 +65,6 @@
                 </tr>
 
                 <tr >
-                    <td>UAB 233 F</td>
                     <td>9:00am</td>
                     <td> 
                         50000

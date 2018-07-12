@@ -15,10 +15,10 @@
                         </div>
                     @endif 
                     <h3 style="text-align:center; margin-bottom:30px;" >Bus Schedules for kla - Gulu</h3>
-                    @include('includes.schedule_table_1way')
+                    @include('schedule_includes.schedule_table_1way')
                     <form>
                         @csrf
-                        @include('includes.schedule_table_2way')   
+                        @include('schedule_includes.schedule_table_2way')   
                     </form>      
                 </div>
 

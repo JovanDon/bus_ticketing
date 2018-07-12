@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PageController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,14 +25,6 @@ class PageController extends Controller
     {
         return view('home');
     }
-    public function viewSchedules()
-    {
-        return view('client_schedules');
-    }
-
-    public function view_wherewhen_page()
-    {
-        return view('wherewhen_details');
-    }
+   
     
 }
