@@ -19,11 +19,15 @@ class CreateBookingsTable extends Migration
             $table->enum('favourite_seat',['window','off-window']);
             $table->date('travel_date');
             $table->string('ticket_number');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+
+            $table->unsignedInteger('passanger_id');
+            $table->foreign('passanger_id')->references('id')->on('users');
+
             $table->unsignedInteger('schedule_id');
             $table->foreign('schedule_id')->references('id')->on('schedules');
+
             $table->timestamps();
+            $table->enum('status',['activated','cancelled','used']);
         });
     }
 
