@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\business_logic\RoutesLogic;
 
 class ScheduleController extends Controller
 {
@@ -14,11 +15,10 @@ class ScheduleController extends Controller
 
     public function addform()
     {
-        $app = app();
-        $tripschedule = $app->make('stdClass');
-        $tripschedule->id=null;
-
-        return view('scheduletrip_form',compact("tripschedule",$tripschedule));
+        $logicManager=new RoutesLogic();
+        $routes=$logicManager->index();
+    
+        return view('schedule_route_form',compact("routes",$routes));
     }
     public function view_allschedules()
     {

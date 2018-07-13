@@ -5,18 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header" style="color:#fff;" >{{ __('schedule a trip') }}</div>
+                <div class="card-header" style="color:#fff;" >{{ __('schedule a route') }}</div>
 
                 <div class="card-body">
                 
-                    <form method="POST" action="@if($tripschedule->id) {{ url('updateschedule_action') }} @else {{ url('addschedule_action') }}  @endif" aria-label="{{ __('Schedule') }}">
+                    <form method="POST" action="@if($routeschedule->id) {{ url('updateschedule_action') }} @else {{ url('addschedule_action') }}  @endif" aria-label="{{ __('Schedule') }}">
                         @csrf
                        
                         <div class="form-group row">
-                            <label for="trip" class="col-md-4 col-form-label text-md-right" style="color:#fff;" > {{ __('Select trip') }}</label>
+                            <label for="route" class="col-md-4 col-form-label text-md-right" style="color:#fff;" > {{ __('Select route') }}</label>
 
                             <div class="col-md-6">
-                               <select  value="@if($tripschedule->id) {{$tripschedule->trip}}  @endif " id="trip" class="form-control" name="trip"  class="form-control js-example-basic-single"   required >
+                               <select  value="@if($routeschedule->id) {{$routeschedule->route}}  @endif " id="route" class="form-control" name="route"  class="form-control js-example-basic-single"   required >
                                 <option value="" >kampala</option>
                                 <option value="" >lwengo</option>
                                 <option value="" >masaka</option>
@@ -34,7 +34,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="trip" class="col-md-4 col-form-label text-md-right" style="color:#fff;" > {{ __('Week day') }}</label>
+                            <label for="route" class="col-md-4 col-form-label text-md-right" style="color:#fff;" > {{ __('Week day') }}</label>
 
                             <div class="col-md-6">
                                <select   id="weekday" class="form-control" name="weekday"  class="form-control js-example-basic-single"   required >
@@ -85,7 +85,7 @@
                             <label for="max_expected" class="col-md-6 col-form-label text-md-right" style="color:#fff;" >{{ __('Max Capacity') }}</label>
 
                             <div class="col-md-4">
-                                <input value="@if($tripschedule->id) {{$tripschedule->max_capacity}}  @endif " id="max_capacity" type="number" class="form-control" name="max_capacity" value="{{ old('max_expected') }}" required autofocus>
+                                <input value="@if($routeschedule->id) {{$routeschedule->max_capacity}}  @endif " id="max_capacity" type="number" class="form-control" name="max_capacity" value="{{ old('max_expected') }}" required autofocus>
 
                             </div>
                         </div>  
@@ -95,10 +95,10 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                @if($tripschedule->id) 
-                                    {{ __('Update trip schedule') }} 
+                                @if($routeschedule->id) 
+                                    {{ __('Update route schedule') }} 
                                 @else 
-                                    {{ __('Schedule trip') }}
+                                    {{ __('Schedule route') }}
                                 @endif
                                 </button>
                             </div>

@@ -43,24 +43,28 @@
                         <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('home') }}">home</a>
                         </li>
-
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('triplist') }}">trip list</a>
+                        <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedules</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addtripform') }}">add trip</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedule list</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addtripscheduleform') }}">schedule trip </a>
+                        <a class="nav-link" href="{{ URL::to('routelist') }}">routes</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="{{ URL::to('bookings') }}">Bookings </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('addrouteform') }}">add route</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('addtownform') }}">add town</a>
+                        </li>                          
+
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ URL::to('addroutescheduleform') }}">schedule route </a>
                         </li>
                     </ul>
 
