@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Bus Tickating</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -39,34 +39,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('home') }}">home</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedules</a>
-                        </li>
+                    @guest
+                    @else
+                        <ul class="navbar-nav mr-auto">
+                        @inject('user', 'App\Http\Controllers\HomeController')
+                        
+                            
+                            @if($user->is_admin())
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedules</a>
+                                </li>
 
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('routelist') }}">routes</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('bookings') }}">Bookings </a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addrouteform') }}">add route</a>
-                        </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addtownform') }}">add town</a>
-                        </li>                          
-
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ URL::to('addroutescheduleform') }}">schedule route </a>
-                        </li>
-                    </ul>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('routelist') }}">routes</a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('bookings') }}">Bookings </a>
+                                </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
+                                </li> 
+                                
+                            @else
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('home') }}">home</a>
+                                </li>
+                            @endif
+                        </ul>
+                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -106,10 +106,15 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('vendorbootstrap/js/bootstrap.min.js') }}"></script>
-
+ 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap Js -->
+    
+    <script src="{{ asset('vendorbootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('vendorbootstrap/js/bootstrap.min.js') }}"></script>
+
+
     <!-- DataTables JavaScript -->
 <script>
 $(document).ready(function () {

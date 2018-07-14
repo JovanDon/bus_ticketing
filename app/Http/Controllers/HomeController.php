@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Users;
+use App\Http\Controllers\ScheduleController;
 
 class HomeController extends Controller
 {
@@ -16,14 +19,24 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
+        if($this->is_admin()){
+            
+            return (new ScheduleController())->index();
+        }
+
         return view('home');
+    }
+
+    public function is_admin()
+    {
+        $logged_in_user=Auth::user();
+        if($logged_in_user->name=="Admin"){
+            return true;
+        }
+        return false;
     }
    
     

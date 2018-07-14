@@ -26,11 +26,13 @@ Route::post('/editroute_action', 'RoutesController@update_route');
 Route::post('/addroute_action', 'RoutesController@create_route');
 Route::post('/deleteroute_action', 'RoutesController@delete_route');
 
-Route::get('/schedulelist', 'ScheduleController@view_allschedules');
+Route::get('/schedulelist', 'ScheduleController@index');
 Route::get('/client_schedules', 'ScheduleController@searched_schedules');
-Route::post('/addroutescheduleform', 'ScheduleController@addform');
 Route::get('/schedule_route_form', 'ScheduleController@addform');
-Route::post('/schedule_route_form', 'ScheduleController@addform');
+Route::post('/schedule_route_form', 'ScheduleController@display_schedule_route_form');
+Route::post('/addschedule_action', 'ScheduleController@make_schedule');
+Route::post('/editschedule', 'ScheduleController@editform');
+Route::post('/updateschedule_action', 'ScheduleController@update_schedule'); 
 
 
 

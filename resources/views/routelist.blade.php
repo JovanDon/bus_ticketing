@@ -5,8 +5,10 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                
 
+            <a  class="nav-link" href="{{ URL::to('addrouteform') }}" > <button class="btn btn-primary" type="button">add route</button>  </a>
+           
+           
                 <div class="panel-body">
             @if($errors->any())
             <div class="alert alert-danger">
