@@ -64,6 +64,11 @@
                                 <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('home') }}">home</a>
                                 </li>
+
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('mybookings') }}">recent trips</a>
+                                </li>
+                                
                             @endif
                         </ul>
                     @endguest

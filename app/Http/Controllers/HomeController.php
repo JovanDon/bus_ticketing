@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Users;
-use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\BookingsController;
+use App\business_logic\TownsLogic;
 
 class HomeController extends Controller
 {
@@ -23,11 +24,14 @@ class HomeController extends Controller
     public function index()
     {
         if($this->is_admin()){
-            
-            return (new ScheduleController())->index();
+           
+            return (new BookingsController())->index();
         }
+       
+        $logicManager=new TownsLogic();
+        $towns=$logicManager->index();
 
-        return view('home');
+        return view('home',compact("towns",$towns));
     }
 
     public function is_admin()

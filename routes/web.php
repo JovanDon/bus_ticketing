@@ -37,7 +37,9 @@ Route::post('/updateschedule_action', 'ScheduleController@update_schedule');
 
 
 Route::get('/bookings', 'BookingsController@index');
-Route::post('/booktrip', 'BookingsController@booktrip');
+Route::get('/mybookings', 'BookingsController@view_user_bookings');
+Route::post('/pre_booking', 'BookingsController@fetch_suitable_schedules');
+Route::post('/book', 'BookingsController@make_booking');
 
 Route::get('/townlist', 'TownsController@index'); 
 Route::get('/addtownform', 'TownsController@addform'); 

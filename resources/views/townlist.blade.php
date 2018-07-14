@@ -5,9 +5,14 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
+             <h4 style="text-align:center;" >Towns</h4>
              
-              <a class="nav-link" href="{{ URL::to('addtownform') }}"> <button class="btn btn-primary" type="button">add town</button>  </a>
-                                         
+            <div class="row" >
+                <div class="col-md-2 offset-md-10" >
+                    <a class="nav-link" href="{{ URL::to('addtownform') }}"> <button class="btn btn-primary" type="button">add town</button>  </a>
+                </div>
+            </div>  
+
              <div class="panel-body">
             @if($errors->any())
             <div class="alert alert-danger">

@@ -1,14 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+<h4 style="text-align:center;" >Routes</h4>
 <div class="container">
+                     
+        <div class="row" >
+            <div class="col-md-1 offset-md-11" >
+                <a  class="nav-link" href="{{ URL::to('addrouteform') }}" > <button class="btn btn-primary" type="button">Add a route</button>  </a>
+    
+            </div>
+        </div> 
+
+ 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
 
-            <a  class="nav-link" href="{{ URL::to('addrouteform') }}" > <button class="btn btn-primary" type="button">add route</button>  </a>
-           
-           
+        
                 <div class="panel-body">
             @if($errors->any())
             <div class="alert alert-danger">

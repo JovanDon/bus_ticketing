@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<h4 style="text-align:center;" >Bookings</h4>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -16,32 +17,33 @@
             </div>
         @endif                  
 
-                            <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-example">
+                            <table width="120%" class="table table-striped table-bordered table-responsive-md" id="dataTables-example">
                                 <thead>
                                 <tr>
-                                    <th> Number</th>
-                                    <th> client info</th>
+                                    <th> N0.</th>
+                                    <th>client info</th>
                                     <th>trip</th>
                                     <th>trip date</th>
                                     <th>ticket number</th>
-                                    <th>Paid</th>
+                                    <th>Paid on booking</th>
                                     <th>favourite seat</th>
                                     <th>booked at</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                               <!-- @//foreach ($contacts as $contact) -->
+                                {{$i=1}}
+                               @foreach ($bookings as $booking)
                                     <tr >
-                                        <td>1</td>
-                                        <td>Joshua kk</td>
-                                        <td>Kampala-Mbarara</td>
-                                        <td>12-12-2018</td>
-                                        <td>MK12000</td>                                        
-                                        <td>30,000</td>
-                                        <td>window</td>
-                                        <td>12-07-2018</td>
+                                        <td>{{$i++}}</td>
+                                        <td>{{$booking->name}} ({{$booking->email}})</td>
+                                        <td>{{$booking->origin}}-{{$booking->destination}}</td>
+                                        <td>{{$booking->travel_date}}</td>
+                                        <td>{{$booking->ticket_number}}</td>                                        
+                                        <td>{{$booking->paid}}</td>
+                                        <td>{{$booking->favourite_seat}}</td>
+                                        <td>{{$booking->created_at}}</td>
                                     </tr>
-                               <!--@//endforeach-->
+                               @endforeach
                                 </tbody>
                             </table>
                             <!-- /.table-responsive -->

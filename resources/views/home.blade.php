@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                     <form method="POST" action="{{ url('addaccount_action') }}" aria-label="{{ __('where') }}">
+                     <form method="POST" action="{{ url('pre_booking') }}" aria-label="{{ __('where') }}">
                         @csrf
                                                
                        @include('whenwhere.select2')

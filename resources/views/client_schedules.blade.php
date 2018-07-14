@@ -14,12 +14,48 @@
                         @endforeach()
                         </div>
                     @endif 
-                    <h3 style="text-align:center; margin-bottom:30px;" >Bus Schedules for kla - Gulu</h3>
-                    @include('schedule_includes.schedule_table_1way')
-                    <form>
+                    <h3 style="text-align:center; margin-bottom:30px;" >Bus Schedules for {{$departure_schedules->first()->origin}}-{{$departure_schedules->first()->destination}}</h3>
+                    <form method="POST" action="{{ url('book') }}" aria-label="{{ __('Book') }}">
                         @csrf
-                        @include('schedule_includes.schedule_table_2way')   
-                    </form>      
+                        @include('schedule_includes.schedule_table_1way') 
+
+                        @if(!$return_schedules->isEmpty())
+                        
+                            @include('schedule_includes.schedule_table_2way')   
+                        
+                        @endif  
+
+                        
+                        
+                        <div class="row" >
+                        <label for="paid" class="col-md-3 offset-md-4 col-form-label text-md-right" style="color:#fff;" >{{ __('Payment') }}</label>
+
+                            <div class='col-md-3'>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">(shs)</span>
+                                    </div>
+                                    <input  name="paid" id="paid" class="form-control" type="number"  />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-2" >
+                                
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Book') }}
+                                    </button>
+                                
+                            </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                      
                 </div>
 
             </div>

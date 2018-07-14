@@ -1,82 +1,32 @@
-<h4  >Departure Scedules for @2018-05-5 Pick up stage : wandegeya Park</h4>
-<table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-ex1">
-            <thead>
-            <tr>
-                <th>Departure time</th>
-                <th>Cost(shs)</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!--@//foreach ($contacts as $contact) -->
-                <tr >
-                    <td>7:00am</td>
-                    <td> 
-                        50000
-                    </td>
-                    <td>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="departure_schedule1" name="departure_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="departure_schedule1">Book</label>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr >
-                    <td>9:00am</td>
-                    <td> 
-                        50000
-                    </td>
-                    <td>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="departure_schedule2" name="departure_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="departure_schedule2">Book</label>
-                        </div>
-                    </td>
-                </tr>
-            <!--@//endforeach-->
-            </tbody>
-        </table>
-        <!-- /.table-responsive -->
 
 
-<h4  >Returning Scedules for @2018-05-5 (Pick up stage : wandegeya Park)</h4>
+
+<h5 style="text-align:center;" >Returning Scedules @{{$return_schedules->date}} (Pick up stage : wandegeya Park)</h5>
 <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-ex2">
             <thead>
             <tr>
                 <th>Departure time</th>
                 <th>Cost(shs)</th>
-                <th>Action</th>
+                <th>Choices</th>
             </tr>
             </thead>
             <tbody>
-            <!--@//foreach ($contacts as $contact) -->
+            {{$i=1}}
+            @foreach($return_schedules as $schedule)
                 <tr >
-                    <td>7:00am</td>
+                    <td>{{$schedule->departure_time}}</td>
                     <td> 
-                        50000
+                    {{$schedule->cost}}
                     </td>
                     <td>
                         <div class="custom-control custom-radio">
                             <input type="radio" id="returning_schedule1" name="returning_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="returning_schedule1">Book</label>
+                            <label class="custom-control-label" for="returning_schedule1">choice {{$i++}}</label>
                         </div>
                     </td>
                 </tr>
-
-                <tr >
-                    <td>9:00am</td>
-                    <td> 
-                        50000
-                    </td>
-                    <td>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="returning_schedule2" name="returning_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="returning_schedule2">Book</label>
-                        </div>
-                    </td>
-                </tr>
-            <!--@//endforeach-->
+            @endforeach
             </tbody>
-        </table>
+        </table> 
+        <input type='hidden' value="{{$return_schedules->date}}" name='return_date' >
         <!-- /.table-responsive -->
