@@ -8,12 +8,12 @@
 
                  <h4 style="text-align:center;" >Route Schedules</h4>
              
-             <div class="row" >
-                 <div class="col-md-3 offset-md-9" >
-                     <a  class="nav-link" href="{{ URL::to('schedule_route_form') }}" > <button class="btn btn-primary" type="button">Add a route schedule</button>  </a>
-        
-                 </div>
-             </div> 
+                <div class="row" >
+                    <div class="col-md-3 offset-md-9" >
+                        <a  class="nav-link" href="{{ URL::to('schedule_route_form') }}" > <button class="btn btn-primary" type="button">Add a route schedule</button>  </a>
+            
+                    </div>
+                </div> 
             
                       
 
@@ -23,6 +23,7 @@
                                     <th> Number</th>
                                     <th>Origin</th>
                                     <th>Destination</th>
+                                    <th>Day of week</th>
                                     <th>Departure time</th>
                                     <th>Min time to travel</th>
                                     <th>Max time to travel</th>
@@ -37,6 +38,7 @@
                                         <td>{{$i++}}</td>
                                         <td>{{$schedule->origin}}</td>
                                         <td>{{$schedule->destination}}</td>
+                                        <td>{{$schedule->day_of_week}}</td>
                                         <td>{{$schedule->departure_time}}</td>
                                         <td>{{$schedule->min_hours_taken}}</td>
                                         <td>{{$schedule->max_hours_taken}}</td>

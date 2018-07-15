@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2018 at 09:26 PM
+-- Generation Time: Jul 15, 2018 at 12:31 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -119,7 +119,7 @@ INSERT INTO `routes` (`id`, `origin_id`, `destination_id`, `min_hours_taken`, `m
 
 CREATE TABLE `schedules` (
   `id` int(10) UNSIGNED NOT NULL,
-  `day_of_week` enum('monday','tuesday','wenesday','thursday','friday','saturday','sunday') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `day_of_week` enum('monday','tuesday','wednesday','thursday','friday','saturday','sunday') COLLATE utf8mb4_unicode_ci NOT NULL,
   `route_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -132,8 +132,6 @@ CREATE TABLE `schedules` (
 
 INSERT INTO `schedules` (`id`, `day_of_week`, `route_id`, `created_at`, `updated_at`, `departure_time`) VALUES
 (1, 'monday', 2, '2018-07-14 02:26:27', '2018-07-14 05:01:28', '10:00 am'),
-(2, 'wenesday', 2, '2018-07-14 05:25:17', '2018-07-14 05:25:17', '9:00 am'),
-(3, 'wenesday', 2, '2018-07-14 05:26:38', '2018-07-14 05:26:58', '9:00 pm'),
 (4, 'saturday', 3, '2018-07-14 05:28:10', '2018-07-14 05:28:10', '6:00 am'),
 (5, 'monday', 4, '2018-07-14 15:55:02', '2018-07-14 15:55:02', '12:00 am');
 
