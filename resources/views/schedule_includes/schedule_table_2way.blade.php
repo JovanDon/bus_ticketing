@@ -1,7 +1,7 @@
 
 
 
-<h5 style="text-align:center;" >Returning Scedules @{{$return_schedules->date}} (Pick up stage : wandegeya Park)</h5>
+<h5 style="text-align:center;" >Returning Scedules {{$return_schedules->date}} (Pick up stage : {{$return_schedules->first()->origin_stage}})</h5>
 <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-ex2">
             <thead>
             <tr>

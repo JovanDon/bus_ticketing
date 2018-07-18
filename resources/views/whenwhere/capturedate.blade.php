@@ -16,6 +16,7 @@
     </div>
     <div class="col-md-5 offset-md-1">
         <div id="container2" style="height:250px;"  > </div>
+        <span class="text-warning" >Optional</span>
     </div>
 </div>
 

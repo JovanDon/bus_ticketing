@@ -23,8 +23,34 @@ class BookingsLogic
 
         return $bookings;
     }
+    
    
-    public function book_departure_trip(Request $request,User $logged_in_user){
+    public function do_tickect_exists(array $request){
+        
+        $validBooking=$this->number_of_valid_bookings($request);
+
+        if ($validBooking == 1) {
+            return true;
+         }
+        
+        return false;
+    } 
+   
+    public function number_of_valid_bookings(array $request){
+    return DB::table('bookings')        
+    ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id') 
+    ->where([
+        ['bookings.paid', '>', 5000],
+        ['schedules.route_id', '=', $request['route_id'] ],
+        ['bookings.ticket_number', '=', $request['ticket_number'] ],
+        ['bookings.travel_date', '=', $request['travel_date'] ],
+    ])        
+    ->select('bookings.*')
+    ->get()->count();
+        
+    }
+    
+        public function book_departure_trip(Request $request,User $logged_in_user){
        
         $this->validateBooking($request);
         
@@ -41,6 +67,14 @@ class BookingsLogic
 
         return $booking;
     } 
+    public function validateTicket(Request $request){
+        $this->validate($request,[
+            'route_id' => 'required|numeric',
+            'travel_date' => 'required|date|max:10',
+            'ticket_number' =>'required|string|max:10',
+        ]);
+    }
+    
     protected function validateBooking(Request $request){
         $this->validate($request,[
             'paid' => 'required|numeric',
@@ -48,16 +82,25 @@ class BookingsLogic
             'departure_schedule' => 'required|numeric',
         ]);
     }
-
-    public function get_shcedules_for_booking($array){
+    
+    public function get_schedules_for_booking($array){
        
         $travelday = \Carbon\Carbon::parse($array['departuredate'])->format('l');
-        $returnday = \Carbon\Carbon::parse($array['returndate'])->format('l');
-       
+        $travelday =strtolower($travelday);
+
         $schedules_departure=$this->search_schedules($travelday,$array['origin_id'], $array['destination_id']);
 
-        $schedules_return=$this->search_schedules($returnday,$array['destination_id'], $array['origin_id']);
-  
+        $schedules_return=collect();
+        if( !($array['returndate'] === null) ){
+
+            $returnday = \Carbon\Carbon::parse($array['returndate'])->format('l');
+            $returnday =strtolower($returnday);
+    
+            $schedules_return=$this->search_schedules($returnday,$array['destination_id'], $array['origin_id']);
+        }
+       
+      
+       
         return [
             'departure'=>$schedules_departure,
             'return'=>$schedules_return,
@@ -80,15 +123,29 @@ class BookingsLogic
     }
     
     
-   public function get_user_bookings(User $user){
+    public function get_user_most_recent_bookings(User $user){
         return  DB::table('bookings')
         ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')               
         ->join('routes', 'schedules.route_id', '=', 'routes.id')        
         ->join('towns as origin_town', 'origin_town.id', '=', 'routes.origin_id')
         ->join('towns as destination_town', 'destination_town.id', '=', 'routes.destination_id')
         ->select('bookings.*','schedules.day_of_week', 'schedules.departure_time', 'routes.min_hours_taken', 'routes.cost' , 'routes.max_hours_taken', 'destination_town.name as destination', 'origin_town.name as origin','origin_town.bus_stage as origin_stage')
-        ->where('bookings.passanger_id',$user->id)
+        ->where([
+            ['bookings.passanger_id','=',$user->id],
+            ['bookings.travel_date', '>=', date('Y-m-d') ],
+        ])
         ->get();
-   }
+   } 
+   
+   public function get_user_bookings(User $user){
+    return  DB::table('bookings')
+    ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id')               
+    ->join('routes', 'schedules.route_id', '=', 'routes.id')        
+    ->join('towns as origin_town', 'origin_town.id', '=', 'routes.origin_id')
+    ->join('towns as destination_town', 'destination_town.id', '=', 'routes.destination_id')
+    ->select('bookings.*','schedules.day_of_week', 'schedules.departure_time', 'routes.min_hours_taken', 'routes.cost' , 'routes.max_hours_taken', 'destination_town.name as destination', 'origin_town.name as origin','origin_town.bus_stage as origin_stage')
+    ->where('bookings.passanger_id',$user->id)
+    ->get();
+}
 
 }

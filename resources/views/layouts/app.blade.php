@@ -59,6 +59,9 @@
                                 <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
                                 </li> 
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('verify_ticket_form') }}">check tickets </a>
+                                </li> 
                                 
                             @else
                                 <li class="nav-item">
@@ -68,6 +71,15 @@
                                 <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('mybookings') }}">recent trips</a>
                                 </li>
+                                @inject('boookings', 'App\Http\Controllers\BookingsController')
+
+                                @if($boookings->get_most_recent_booking4_loggedin_user()->isEmpty() )
+                                
+                                @else
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('userticket') }}">My ticket</a>
+                                </li>
+                                @endif
                                 
                             @endif
                         </ul>
@@ -125,6 +137,14 @@
 $(document).ready(function () {
     $('#dataTables-example').DataTable({
         responsive: true,
+        drawCallback: function () {
+            $('#dataTables-example_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+        }
+    });
+
+    $('#dataTables-bookings').DataTable({
+        responsive: true,
+        "order": [[ 6, "desc" ]],
         drawCallback: function () {
             $('#dataTables-example_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
         }

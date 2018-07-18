@@ -58,7 +58,7 @@ class ScheduleController extends Controller
         $route_to_schedule=$request->route_id;
 
         
-        return view('schedule_route_form',compact("routes",$routes,'is_form_to_edit',$is_form_to_edit,'scheduleData',$scheduleData,'route_to_schedule',$route_to_schedule));
+        return view('schedule_route_form', compact("routes",$routes,'is_form_to_edit',$is_form_to_edit,'scheduleData',$scheduleData,'route_to_schedule',$route_to_schedule));
     }
 
     

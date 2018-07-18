@@ -40,6 +40,11 @@ Route::get('/bookings', 'BookingsController@index');
 Route::get('/mybookings', 'BookingsController@view_user_bookings');
 Route::post('/pre_booking', 'BookingsController@fetch_suitable_schedules');
 Route::post('/book', 'BookingsController@make_booking');
+Route::get('/verify_ticket_form', 'BookingsController@verify_ticket_form');
+Route::post('/verify_ticket_action', 'BookingsController@verify_ticket_number');
+Route::get('/userticket', 'BookingsController@displayUersTicket');
+
+
 
 Route::get('/townlist', 'TownsController@index'); 
 Route::get('/addtownform', 'TownsController@addform'); 

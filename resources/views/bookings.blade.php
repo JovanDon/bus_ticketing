@@ -17,7 +17,7 @@
             </div>
         @endif                  
 
-                            <table width="120%" class="table table-striped table-bordered table-responsive-md" id="dataTables-example">
+                            <table width="120%" class="table table-striped table-bordered table-responsive-md" id="dataTables-bookings">
                                 <thead>
                                 <tr>
                                     <th> N0.</th>
@@ -26,7 +26,6 @@
                                     <th>trip date</th>
                                     <th>ticket number</th>
                                     <th>Paid on booking</th>
-                                    <th>favourite seat</th>
                                     <th>booked at</th>
                                 </tr>
                                 </thead>
@@ -40,7 +39,6 @@
                                         <td>{{$booking->travel_date}}</td>
                                         <td>{{$booking->ticket_number}}</td>                                        
                                         <td>{{$booking->paid}}</td>
-                                        <td>{{$booking->favourite_seat}}</td>
                                         <td>{{$booking->created_at}}</td>
                                     </tr>
                                @endforeach
