@@ -67,6 +67,7 @@ class BookingsController extends Controller
         $return_schedules=$schedules['return'];
 
         $return_schedules->date=$request->returndate;
+        $return_schedules->comingback=$request->comingback;
         
         $departure_schedules=$schedules['departure'];
 
@@ -74,15 +75,19 @@ class BookingsController extends Controller
             dd('Schedules not found for '.$request->departuredate.'' );
         }
         $departure_schedules->date=$request->departuredate;
+        $departure_schedules->going=$request->going;
     
         return view('client_schedules',compact('departure_schedules',$departure_schedules,'return_schedules',$return_schedules ));
     }
 
     public function make_booking(Request $request){
         $logicManager=new BookingsLogic();
-        
+       
         $logged_in_user=Auth::user();
         $ticketData=$logicManager->book_departure_trip($request,$logged_in_user);
+
+        $ticket_number=$ticketData->ticket_number;
+        $ticketData_return=$logicManager->book_return_trip($request,$logged_in_user,$ticket_number);
         
        return $this->view_user_bookings();
     }

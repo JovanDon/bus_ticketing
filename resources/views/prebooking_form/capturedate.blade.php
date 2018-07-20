@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-6">
-        <label for="container1" style="color:#FFF;"  class="col-md-4 col-form-label text-md-left">{{ __('Departure date') }}</label>
+        <label for="container1" style="color:#FFF;"  class="col-md-6 col-form-label text-md-left">{{ __('Departure date') }}</label>
             
     </div>
     <div class="col-md-6">
-    <label for="container2" style="color:#FFF;" class="col-md-4 col-form-label text-md-left">{{ __(' Return date') }}</label>
+    <label for="container2" style="color:#FFF;" class="col-md-6 col-form-label text-md-left">{{ __(' Return date') }}</label>
             
     </div>
 </div>

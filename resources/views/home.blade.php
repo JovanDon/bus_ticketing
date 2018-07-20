@@ -17,8 +17,9 @@
                      <form method="POST" action="{{ url('pre_booking') }}" aria-label="{{ __('where') }}">
                         @csrf
                                                
-                       @include('whenwhere.select2')
-                       @include('whenwhere.capturedate')
+                       @include('prebooking_form.select2')
+                       @include('prebooking_form.capturedate')
+                       @include('prebooking_form.howmany')
                        
                        <div class="row" >
                        <div class='col-md-6'></div>

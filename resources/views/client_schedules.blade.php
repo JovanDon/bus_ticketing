@@ -28,9 +28,9 @@
                         
                         
                         <div class="row" >
-                        <label for="paid" class="col-md-3 offset-md-4 col-form-label text-md-right" style="color:#fff;" >{{ __('Payment') }}</label>
+                        <label for="paid" class="col-md-2 offset-md-4 col-form-label text-md-right" style="color:#fff;" >{{ __('Payment') }}</label>
 
-                            <div class='col-md-3'>
+                            <div class='col-md-4'>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">(shs)</span>

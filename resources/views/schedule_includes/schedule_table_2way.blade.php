@@ -20,13 +20,14 @@
                     </td>
                     <td>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="returning_schedule1" name="returning_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="returning_schedule1">choice {{$i++}}</label>
+                            <input type="radio" value="{{$schedule->id}}"  id="returning_schedule{{$i}}" name="returning_schedule"  class="custom-control-input" >
+                            <label class="custom-control-label" for="returning_schedule{{$i}}">choice {{$i++}}</label>
                         </div>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table> 
-        <input type='hidden' value="{{$return_schedules->date}}" name='return_date' >
+        <input type='hidden' value="{{$return_schedules->date}}" name='return_date' > 
+        <input type='hidden' value="{{$return_schedules->comingback}}" name='comingback' >
         <!-- /.table-responsive -->

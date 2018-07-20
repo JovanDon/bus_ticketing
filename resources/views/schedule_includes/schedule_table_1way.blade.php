@@ -17,8 +17,8 @@
                     </td>
                     <td>
                         <div class="custom-control custom-radio">
-                            <input type="radio" value="{{$schedule->id}}" id="departure_schedule1" name="departure_schedule"  class="custom-control-input" checked="">
-                            <label class="custom-control-label" for="departure_schedule1">choice {{$i++}}</label>
+                            <input type="radio" value="{{$schedule->id}}" id="departure_schedule{{$i}}" name="departure_schedule"  class="custom-control-input" />
+                            <label class="custom-control-label" for="departure_schedule{{$i}}">choice {{$i++}}</label>
                         </div>
                     </td>
                 </tr>
@@ -26,4 +26,5 @@
             </tbody>
         </table>
         <input type='hidden' value="{{$departure_schedules->date}}" name='departure_date' >
+        <input type='hidden' value="{{$departure_schedules->going}}" name='going' >
         <!-- /.table-responsive -->

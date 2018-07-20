@@ -63,9 +63,30 @@ class BookingsLogic
             "ticket_number"=>str_random(10),
             "passanger_id"=>$logged_in_user->id,
             "schedule_id"=>$request->departure_schedule,
+            "number_of_passangers"=>$request->going,
         ]);;
 
         return $booking;
+    } 
+
+
+    public function book_return_trip(Request $request,User $logged_in_user, $ticket_number){
+       
+        if( !($request->return_date===null) ){
+
+            return Bookings::create([
+                "paid"=>$request->paid,
+                "favourite_seat"=>'off-window', 
+                "travel_date"=>$request->return_date,
+                "ticket_number"=>$ticket_number,
+                "passanger_id"=>$logged_in_user->id,
+                "schedule_id"=>$request->returning_schedule,
+                "number_of_passangers"=>$request->comingback,
+            ]);
+        }
+        
+
+        return null;
     } 
     public function validateTicket(Request $request){
         $this->validate($request,[
