@@ -53,11 +53,10 @@ class BookingsLogic
         public function book_departure_trip(Request $request,User $logged_in_user){
        
         $this->validateBooking($request);
-        
-       
-        
+   
+        $pay=$this->make_payment( $request->paid,$request->going,$request->departure_schedule );
         $booking=Bookings::create([
-            "paid"=>$request->paid,
+            "paid"=>$pay['paid'],
             "favourite_seat"=>'off-window', 
             "travel_date"=>$request->departure_date,
             "ticket_number"=>str_random(10),
@@ -65,24 +64,45 @@ class BookingsLogic
             "schedule_id"=>$request->departure_schedule,
             "number_of_passangers"=>$request->going,
         ]);;
-
+        $booking->balance=$pay['balance'];
         return $booking;
     } 
 
+    private function make_payment($total,$quantity,$schedule_id){
+        $price=$this->get_route_cost($schedule_id)->first()->cost;
+        $paid= $quantity * $price;
+        $balance=$total - $paid;
+        return [
+            'paid' => $paid,
+            'balance' => $balance
+        ];
+        
+    }
+    private function get_route_cost($schedule_id){
+       return  DB::table('schedules')        
+       ->join('routes', 'routes.id', '=', 'schedules.route_id') 
+       ->where('schedules.id', '=',$schedule_id)        
+       ->select('routes.cost')
+       ->get();
+    }
 
-    public function book_return_trip(Request $request,User $logged_in_user, $ticket_number){
+    public function book_return_trip(Request $request,User $logged_in_user,$payment_balance){
        
         if( !($request->return_date===null) ){
-
-            return Bookings::create([
-                "paid"=>$request->paid,
+            $pay=$this->make_payment($payment_balance,$request->comingback,$request->returning_schedule );
+      
+            $booking= Bookings::create([
+                "paid"=>$pay['paid'],
                 "favourite_seat"=>'off-window', 
                 "travel_date"=>$request->return_date,
-                "ticket_number"=>$ticket_number,
+                "ticket_number"=>str_random(10),
                 "passanger_id"=>$logged_in_user->id,
                 "schedule_id"=>$request->returning_schedule,
                 "number_of_passangers"=>$request->comingback,
             ]);
+
+            $booking->balance=$pay['balance'];
+            return $booking;
         }
         
 

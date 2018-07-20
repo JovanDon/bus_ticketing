@@ -25,16 +25,9 @@ class BookingsController extends Controller
     }
 
     public function displayUersTicket(){
-        $ticketData=$this->get_most_recent_booking4_loggedin_user();
-
-        if($ticketData->isEmpty()){
-            $ticketData=null;
-        }else{
-            $ticketData=$ticketData->all()[0];
-        }
-        
-      
-        return view('user_ticket',compact('ticketData',$ticketData) );
+        $ticketsData=$this->get_most_recent_booking4_loggedin_user();
+ 
+        return view('user_ticket',compact('ticketsData',$ticketsData) );
     }
     
     public function get_most_recent_booking4_loggedin_user(){
@@ -87,7 +80,7 @@ class BookingsController extends Controller
         $ticketData=$logicManager->book_departure_trip($request,$logged_in_user);
 
         $ticket_number=$ticketData->ticket_number;
-        $ticketData_return=$logicManager->book_return_trip($request,$logged_in_user,$ticket_number);
+        $ticketData_return=$logicManager->book_return_trip($request,$logged_in_user,$ticketData->balance);
         
        return $this->view_user_bookings();
     }
