@@ -16,7 +16,7 @@
             </div>
         @endif                  
 
-                            <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-example">
+                            <table width="100%" class="table table-striped table-bordered table-responsive-md" id="dataTables-user_booking">
                                 <thead>
                                 <tr>
                                     <th> Date</th>

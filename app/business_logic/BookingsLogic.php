@@ -35,20 +35,57 @@ class BookingsLogic
         
         return false;
     } 
+    
    
-    public function number_of_valid_bookings(array $request){
-    return DB::table('bookings')        
-    ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id') 
-    ->where([
-        ['bookings.paid', '>', 5000],
-        ['schedules.route_id', '=', $request['route_id'] ],
-        ['bookings.ticket_number', '=', $request['ticket_number'] ],
-        ['bookings.travel_date', '=', $request['travel_date'] ],
-    ])        
-    ->select('bookings.*')
-    ->get()->count();
+    public function is_tickect_checked_in(array $request,$departure_time ){
         
-    }
+        $validTicket=$this->verify_ticket($request['route_id'], $request['ticket_number'], $departure_time);
+        
+        if ($validTicket->count() == 1) {        
+            Bookings::find($validTicket->first()->id)->update([ 'status'=>'used' ]);
+            return true;
+        }
+        
+        return false;
+    } 
+   
+   
+
+        public function verify_ticket($route_id, $ticket_number,$departure_time ){
+            return DB::table('bookings')        
+            ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id') 
+            ->where([
+                ['bookings.paid', '>', 5000],
+                ['schedules.route_id', '=', $route_id ],
+                ['bookings.ticket_number', '=', $ticket_number ],
+                ['bookings.travel_date', '=', date("Y-m-d") ],
+                ['schedules.departure_time', '=', $departure_time ],
+            ])  
+            ->orWhere([
+                ['bookings.paid', '>', 5000],
+                ['schedules.route_id', '=', $route_id ],
+                ['bookings.ticket_number', '=', $ticket_number ],
+                ['bookings.travel_date', '=', date("Y-m-d") ],
+                ['schedules.departure_time', '=',  str_replace(' ', '', $departure_time) ],
+            ])                    
+            ->select('bookings.*')
+            ->get();
+                
+            }
+   
+        public function number_of_valid_bookings(array $request){
+        return DB::table('bookings')        
+        ->join('schedules', 'schedules.id', '=', 'bookings.schedule_id') 
+        ->where([
+            ['bookings.paid', '>', 5000],
+            ['schedules.route_id', '=', $request['route_id'] ],
+            ['bookings.ticket_number', '=', $request['ticket_number'] ],
+            ['bookings.travel_date', '=', $request['travel_date'] ],
+        ])        
+        ->select('bookings.*')
+        ->get()->count();
+            
+        }
     
         public function book_departure_trip(Request $request,User $logged_in_user){
        
@@ -112,6 +149,12 @@ class BookingsLogic
         $this->validate($request,[
             'route_id' => 'required|numeric',
             'travel_date' => 'required|date|max:10',
+            'ticket_number' =>'required|string|max:10',
+        ]);
+    }
+    public function validate_CheckIn(Request $request){
+        $this->validate($request,[
+            'route_id' => 'required|numeric',
             'ticket_number' =>'required|string|max:10',
         ]);
     }

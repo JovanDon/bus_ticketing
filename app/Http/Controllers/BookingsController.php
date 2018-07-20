@@ -29,6 +29,15 @@ class BookingsController extends Controller
  
         return view('user_ticket',compact('ticketsData',$ticketsData) );
     }
+
+    public function display_check_in_form(){
+        $logicManager=new RoutesLogic();
+        $routes=$logicManager->index();
+        $is_ticket_valid=null;
+        
+        return view('ticket_check_in',compact('routes',$routes,'is_ticket_valid',$is_ticket_valid));
+   
+    }
     
     public function get_most_recent_booking4_loggedin_user(){
         $logged_in_user=Auth::user();
@@ -48,6 +57,20 @@ class BookingsController extends Controller
     $routes=$logicManager->index();
     
     return view('verify_ticket',compact('routes',$routes,'is_ticket_valid',$is_ticket_valid));
+    }
+
+    public function verify_checkin(Request $request){
+
+    $departure_time=$request->departuretime." ".$request->format;
+    
+    $logicManager=new BookingsLogic();
+    $logicManager->validate_CheckIn($request);
+    $is_ticket_valid=$logicManager->is_tickect_checked_in($request->only('route_id','ticket_number'), $departure_time );
+   
+    $logicManager=new RoutesLogic();
+    $routes=$logicManager->index();
+    
+    return view('ticket_check_in',compact('routes',$routes,'is_ticket_valid',$is_ticket_valid));
     }
     
    

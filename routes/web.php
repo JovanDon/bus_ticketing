@@ -43,8 +43,9 @@ Route::post('/pre_booking', 'BookingsController@fetch_suitable_schedules');
 Route::post('/book', 'BookingsController@make_booking');
 Route::get('/verify_ticket_form', 'BookingsController@verify_ticket_form');
 Route::post('/verify_ticket_action', 'BookingsController@verify_ticket_number');
+Route::post('/verify_checkin_action', 'BookingsController@verify_checkin');
 Route::get('/userticket', 'BookingsController@displayUersTicket');
-
+Route::get('/ticket_check_in', 'BookingsController@display_check_in_form');
 
 
 Route::get('/townlist', 'TownsController@index'); 

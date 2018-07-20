@@ -60,7 +60,10 @@
                                 <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
                                 </li> 
                                 <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('verify_ticket_form') }}">check tickets </a>
+                                <a class="nav-link" href="{{ URL::to('verify_ticket_form') }}">Ticket Inquiry </a>
+                                </li>  
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ URL::to('ticket_check_in') }}">Ticket checkins </a>
                                 </li> 
                                 
                             @else
@@ -150,6 +153,14 @@ $(document).ready(function () {
         }
     });
 
+      $('#dataTables-user_booking').DataTable({
+    responsive: true,
+    'order':[[4,'desc']],
+    drawCallback: function () {
+        $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+    }
+    });
+
      $('#dataTables-ex1').DataTable({
         responsive: true,
         drawCallback: function () {
@@ -157,12 +168,15 @@ $(document).ready(function () {
         }
     });
 
-     $('#dataTables-ex2').DataTable({
-        responsive: true,
-        drawCallback: function () {
-            $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
-        }
+    $('#dataTables-ex2').DataTable({
+    responsive: true,
+    drawCallback: function () {
+        $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
+    }
     });
+
+  
+
 });
 </script>
 <script type="text/javascript"src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
