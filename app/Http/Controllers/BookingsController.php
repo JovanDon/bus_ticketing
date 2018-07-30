@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use App\business_logic\BookingsLogic;
 use App\business_logic\RoutesLogic;
 
-class BookingsController extends Controller
-{
-    public function index(){
+
+class BookingsController extends Controller{
+
+    public function index()
+    {
         $logicManager=new BookingsLogic();
         $bookings=$logicManager->index();
-      
+        
         return view('bookings',compact('bookings',$bookings));
     }
 
@@ -85,7 +87,7 @@ class BookingsController extends Controller
         $return_schedules->date=$request->returndate;
         $return_schedules->comingback=$request->comingback;
         
-        $departure_schedules=$schedules['departure'];
+         $departure_schedules=$schedules['departure'];
 
         if($departure_schedules->isEmpty()){
             dd('Schedules not found for '.$request->departuredate.'' );

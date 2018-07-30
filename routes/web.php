@@ -56,5 +56,9 @@ Route::post('/addtown_action', 'TownsController@create_town');
 Route::post('/deletetown_action', 'TownsController@delete_town');
  
 
+Route::get('/create_role', 'RoleController@display_create_form'); 
+Route::post('/create_role_action', 'RoleController@create_role');
+Route::get('/assign_user_roles', 'RoleController@display_assign_roles_form'); 
+Route::post('/assign_user_roles_action', 'RoleController@assign_user_role');
 
 

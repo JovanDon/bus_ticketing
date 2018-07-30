@@ -39,57 +39,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @guest
-                    @else
+                    
                         <ul class="navbar-nav mr-auto">
-                        @inject('user', 'App\Http\Controllers\HomeController')
                         
-                            
-                            @if($user->is_admin())
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('schedulelist') }}">Schedules</a>
-                                </li>
-
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('routelist') }}">routes</a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('bookings') }}">Bookings </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('townlist') }}">Towns </a>
-                                </li> 
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('verify_ticket_form') }}">Ticket Inquiry </a>
-                                </li>  
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('ticket_check_in') }}">Ticket checkins </a>
-                                </li> 
+                                 
                                 <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('create_role') }}">Create Role </a>
                                 </li> 
-                                
-                            @else
                                 <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('home') }}">home</a>
-                                </li>
-
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('mybookings') }}">recent trips</a>
-                                </li>
-                                @inject('boookings', 'App\Http\Controllers\BookingsController')
-
-                                @if($boookings->get_most_recent_booking4_loggedin_user()->isEmpty() )
-                                
-                                @else
-                                <li class="nav-item">
-                                <a class="nav-link" href="{{ URL::to('userticket') }}">My ticket</a>
-                                </li>
-                                @endif
-                                
-                            @endif
+                                <a class="nav-link" href="{{ URL::to('assign_user_roles') }}">Assign User Roles </a>
+                                </li> 
                         </ul>
-                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -141,12 +101,7 @@
     <!-- DataTables JavaScript -->
 <script>
 $(document).ready(function () {
-    $('#dataTables-example').DataTable({
-        responsive: true,
-        drawCallback: function () {
-            $('#dataTables-example_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
-        }
-    });
+
 
     $('#dataTables-bookings').DataTable({
         responsive: true,
@@ -156,75 +111,67 @@ $(document).ready(function () {
         }
     });
 
-      $('#dataTables-user_booking').DataTable({
-    responsive: true,
-    'order':[[4,'desc']],
-    drawCallback: function () {
-        $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
-    }
-    });
-
-     $('#dataTables-ex1').DataTable({
-        responsive: true,
-        drawCallback: function () {
-            $('#dataTables-ex1_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
-        }
-    });
-
-    $('#dataTables-ex2').DataTable({
-    responsive: true,
-    drawCallback: function () {
-        $('#dataTables-ex2_wrapper .row:last-child').addClass('mb-1 align-items-baseline');
-    }
-    });
-
-  
 
 });
 </script>
 <script type="text/javascript"src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/responsive.bootstrap4.js') }}"></script>
- <!-- Zebra Datepicker JavaScript -->
-<script type="text/javascript" src="{{ asset('Zebra_Datepicker/dist/zebra_datepicker.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('Zebra_Datepicker/custom.js') }}"></script>
+
 
  <!-- select2 JavaScript -->
 <script type="text/javascript" src="{{ asset('select2-4.0.6/dist/js/select2.min.js') }}"></script>
 
 
 <script>
-function matchCustom(params, data) {
-    // If there are no search terms, return all of the data
-    if ($.trim(params.term) === '') {
-      return data;
+
+$(
+    function(){
+
+        $("#selectall_permissions").click(function(){
+            
+        if( $(this).prop('checked')===true ){
+            $(".permissions").prop('checked',true);
+        }else{
+            $(".permissions").prop('checked',false);
+        }
+        
+        });
+
+        $("#applies_to").change(function(){
+            
+        $('#permissionsTable').show();
+        $('tr.permission').hide();
+        $('tr.'+$(this).val()).show();
+            
+        });
+
+        $("#works_at").change(function(){
+            
+        $('#roles_table').show();
+        $('tr.role').hide();
+        $('tr.'+$(this).val()).show();
+            
+        });
+        
+        
+        $("#selectall_roles").click(function(){
+            
+            if( $(this).prop('checked')===true ){
+                $(".roles").prop('checked',true);
+            }else{
+                $(".roles").prop('checked',false);
+            }
+            
+            });
+
+        $('.js-example-basic-single').select2();
+
     }
+);
 
-    // Do not display the item if there is no 'text' property
-    if (typeof data.text === 'undefined') {
-      return null;
-    }
-
-    // `params.term` should be the term that is used for searching
-    // `data.text` is the text that is displayed for the data object
-    if (data.text.indexOf(params.term) > -1) {
-      var modifiedData = $.extend({}, data, true);
-      modifiedData.text += ' (matched)';
-
-      // You can return modified objects from here
-      // This includes matching the `children` how you want in nested data sets
-      return modifiedData;
-    }
-
-    // Return `null` if the term should not be displayed
-    return null;
-}
-
-// In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('.js-example-basic-single').select2();
-
-});
 </script>
+
+
 </body>
 </html>
